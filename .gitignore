@@ -1,0 +1,10 @@
+venv/
+config.py
+.vscode/
+imgs/
+static/
+uploads/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
