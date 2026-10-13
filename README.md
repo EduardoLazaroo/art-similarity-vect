@@ -306,8 +306,34 @@ O servidor ficara disponivel em `http://127.0.0.1:5000`.
 
 ---
 
+---
+
+## Evidencias Visuais e Execucao Real
+
+O pipeline de busca vetorial foi executado e testado integralmente em infraestrutura real:
+
+1. **Indexacao Vetorial no Qdrant**: Criacao da colecao `art_similarity` com dimensao 1.280 e metrica de cosseno no cluster Qdrant local (porta 6333).
+2. **Extracao de Embeddings Densos**: Inferencia executada com EfficientNetB0 (ImageNet pre-trained), extraindo representacoes latentes com Global Average Pooling.
+3. **Validacao Semantica de Similaridade de Cosseno**:
+   - Imagem de Consulta: *Nenúfares no Lago* (Claude Monet, Impressionismo).
+   - Top-1 Correspondencia Exata: Score `1.0000` (*Nenúfares no Lago*).
+   - Top-2 Mesma Escola/Autor: Score `0.9946` (*Impressão, Nascer do Sol*, Claude Monet).
+   - Estilos Divergentes: *Composição Cubista* (`0.8348`), *Abstracionismo de Kandinsky* (`0.7734`), *A Noite Estrelada* (`0.7004`).
+   - Margem semântica de cosseno comprovada de `+0.2212` em favor da coerência artística e cromática.
+
+Evidencia consolidada gravada em: [`evidencias/log_execucao_real.txt`](evidencias/log_execucao_real.txt).
+
+### Diagramas de Arquitetura e Matriz de Similaridade
+
+![Arquitetura da Busca Vetorial de Obras de Arte](evidencias/arquitetura_busca_vetorial_art.png)
+
+![Matriz de Similaridade de Cosseno entre as Obras](evidencias/matriz_similaridade_cosseno_obras.png)
+
+---
+
 ## Casos de Uso e Aplicacoes
 
 * Humanidades Digitais e Historia da Arte: Identificacao de convergencias visuais entre diferentes periodos artisticos, rastreamento de influencias morfologicas e agrupamento de acervos por propriedades formais.
 * Curadoria e Catalogacao Museologica: Deteccao automatica de duplicidades visuais em grandes acervos digitalizados e sugestao de categorizacao estilistica para obras com documentacao incompleta.
 * Sistemas de Recomendacao Cultural: Mecanismo de recomendacao visual para plataformas de museus e galerias, sugerindo pecas correlatas a partir do interesse espontaneo do visitante.
+

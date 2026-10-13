@@ -1,0 +1,31 @@
+=== EXECUÇÃO REAL DO PIPELINE: ART-SIMILARITY-VECT ===
+Infraestrutura: Qdrant Vector DB (Porta 6333) | PyTorch Torchvision EfficientNetB0 (1280 Dimensões) | Cosine Distance
+
+[ETAPA 1] Gerando banco de dados visual com 5 obras artísticas...
+  • Criada obra: Nenúfares no Lago (Claude Monet, Impressionismo) -> monet_water_lilies.jpg
+  • Criada obra: Impressão, Nascer do Sol (Claude Monet, Impressionismo) -> monet_sunrise.jpg
+  • Criada obra: A Noite Estrelada (Vincent van Gogh, Pós-Impressionismo) -> vangogh_starry_night.jpg
+  • Criada obra: Composição Cubista (Pablo Picasso, Cubismo) -> picasso_cubism.jpg
+  • Criada obra: Amarelo, Vermelho e Azul (Wassily Kandinsky, Abstracionismo) -> kandinsky_abstract.jpg
+
+[ETAPA 2] Carregando Rede Neural Convolucional EfficientNetB0...
+
+[ETAPA 3] Conectando ao Qdrant Vector Database (http://localhost:6333)...
+  Collection 'art_similarity' recriada com sucesso! Dimensão: 1280 | Métrica: Cosseno
+
+[ETAPA 4] Extraindo embeddings visuais e indexando pontos no Qdrant...
+  5 pontos vetoriais inseridos no cluster Qdrant!
+
+[ETAPA 5] Executando Busca por Similaridade Vetorial (Nearest Neighbor Query):
+Query Image: 'monet_water_lilies.jpg' (Claude Monet, Impressionismo)
+Top-K Resultados Ordenados por Similaridade de Cosseno:
+  1. [Score: 1.0000] Nenúfares no Lago - Claude Monet (Impressionismo) | Arquivo: monet_water_lilies.jpg
+  2. [Score: 0.9946] Impressão, Nascer do Sol - Claude Monet (Impressionismo) | Arquivo: monet_sunrise.jpg
+  3. [Score: 0.8348] Composição Cubista - Pablo Picasso (Cubismo) | Arquivo: picasso_cubism.jpg
+  4. [Score: 0.7734] Amarelo, Vermelho e Azul - Wassily Kandinsky (Abstracionismo) | Arquivo: kandinsky_abstract.jpg
+  5. [Score: 0.7004] A Noite Estrelada - Vincent van Gogh (Pós-Impressionismo) | Arquivo: vangogh_starry_night.jpg
+
+Validação Semântica de Similaridade:
+  Similaridade Monet vs Monet (Mesmo Estilo/Paleta): 0.9946
+  Similaridade Monet vs Kandinsky (Estilo Divergente): 0.7734
+  Diferencial de Cosseno: +0.2212 a favor da coerência artística!
